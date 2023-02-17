@@ -8,7 +8,7 @@ import (
 type Todo struct {
 	ID     int    `json:"id"`
 	Title  string `json:"title"`
-	Status bool   `json:"status"`
+	Status bool   `json:"status"` // 完成状态 0-待完成 1-已完成
 }
 
 /*
@@ -27,6 +27,11 @@ func GetAllTodo() (todoList []*Todo, err error) {
 	return
 }
 
+// GetATodo
+//  @Description: 获取一条待做事项
+//  @param id
+//  @return todo
+//  @return err
 func GetATodo(id string) (todo *Todo, err error) {
 	todo = new(Todo)
 	if err = dao.DB.Debug().Where("id=?", id).First(todo).Error; err != nil {
@@ -35,11 +40,19 @@ func GetATodo(id string) (todo *Todo, err error) {
 	return
 }
 
+// UpdateATodo
+//  @Description: 更新待做事项
+//  @param todo
+//  @return err
 func UpdateATodo(todo *Todo) (err error) {
 	err = dao.DB.Save(todo).Error
 	return
 }
 
+// DeleteATodo
+//  @Description: 删除待做事项
+//  @param id
+//  @return err
 func DeleteATodo(id string) (err error) {
 	err = dao.DB.Where("id=?", id).Delete(&Todo{}).Error
 	return
