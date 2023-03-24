@@ -14,7 +14,7 @@ type Todo struct {
 /*
 	Todo这个Model的增删改查操作都放在这里
 */
-// CreateATodo 创建todo
+// CreateATodo 创建todo任务
 func CreateATodo(todo *Todo) (err error) {
 	err = dao.DB.Create(&todo).Error
 	return
@@ -29,9 +29,6 @@ func GetAllTodo() (todoList []*Todo, err error) {
 
 // GetATodo
 //  @Description: 获取一条待做事项
-//  @param id
-//  @return todo
-//  @return err
 func GetATodo(id string) (todo *Todo, err error) {
 	todo = new(Todo)
 	if err = dao.DB.Debug().Where("id=?", id).First(todo).Error; err != nil {
@@ -42,8 +39,6 @@ func GetATodo(id string) (todo *Todo, err error) {
 
 // UpdateATodo
 //  @Description: 更新待做事项
-//  @param todo
-//  @return err
 func UpdateATodo(todo *Todo) (err error) {
 	err = dao.DB.Save(todo).Error
 	return

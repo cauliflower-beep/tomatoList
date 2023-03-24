@@ -26,11 +26,6 @@ func CreateTodo(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"error": err.Error()})
 	} else {
 		c.JSON(http.StatusOK, todo)
-		//c.JSON(http.StatusOK, gin.H{
-		//	"code": 2000,
-		//	"msg": "success",
-		//	"data": todo,
-		//})
 	}
 }
 
@@ -55,7 +50,7 @@ func UpdateATodo(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"error": err.Error()})
 		return
 	}
-	c.BindJSON(&todo)
+	_ = c.BindJSON(&todo)
 	if err = models.UpdateATodo(todo); err != nil {
 		c.JSON(http.StatusOK, gin.H{"error": err.Error()})
 	} else {

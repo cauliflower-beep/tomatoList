@@ -8,7 +8,6 @@ import (
 
 // SetupRouter
 //  @Description: 初始化路由
-//  @return *gin.Engine
 func SetupRouter() *gin.Engine {
 	if setting.Conf.Release {
 		gin.SetMode(gin.ReleaseMode)

@@ -24,8 +24,6 @@ type MySQLConfig struct {
 
 // Init
 //  @Description: 初始化配置
-//  @param file
-//  @return error
 func Init(file string) error {
 	return ini.MapTo(Conf, file)
 }
