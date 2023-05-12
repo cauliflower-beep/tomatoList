@@ -16,8 +16,7 @@ func IndexHandler(c *gin.Context) {
 }
 
 func CreateTodo(c *gin.Context) {
-	// 前端页面填写待办事项 点击提交 会发请求到这里
-	// 1. 从请求中把数据拿出来
+	// 1. 从请求中获取数据
 	var todo models.Todo
 	_ = c.BindJSON(&todo)
 	// 2. 存入数据库
